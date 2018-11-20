@@ -1,0 +1,106 @@
+{% assign show_sale_tag = 'false' %}
+{% assign product_description_on_rollover = 'false' %} 
+{% assign show_variable_pricing = 'true' %}
+{% assign products_per_row = '3' %}
+{% assign display_category_name_on_page = 'false' %}
+{% assign product_images_width = 1000 %}
+{% assign product_images_height = 1000 %}
+{% assign fit_images_to_containers = 'false' %}
+
+{% if display_category_name_on_page == 'true' %}
+<h3 class='products_page_name'>On Sale</h3>
+{%endif%}
+{% if products.on_sale != blank %}
+{% for product in products.on_sale %}
+
+  {% if products_per_row == '3' %}
+    <div class="product_container column-xs-1 column-sm-1-2 column-md-1-3 column-lg-1-3">
+  {% else %}
+    <div class="product_container column-xs-1 column-sm-1-2 column-md-1-4 column-lg-1-4">
+  {% endif %}
+    <a href="{{ product.url }}" class="{{product.permalink}}">
+    <div class="image_container_large loading">    
+      {% if show_sale_tag == 'true' %}    
+        {% case product.status %}
+        {% when 'active' %}
+            {% if product.on_sale %}
+                <p class='sale_tag'>On Sale</p>
+            {% endif %}
+
+        {% when 'sold-out' %}
+                <p class='sale_tag'>Sold Out</p>
+        {% when 'coming-soon' %}
+                <p class='sale_tag'>Coming Soon</p>
+        {% endcase %}          
+      {%endif%}        
+      {% if product_description_on_rollover == 'true' %}    
+      <div class="product_popup_info">
+        <div class="popup_text">
+          <p class="popup_product_name">{{ product.name }}</p>
+          <span class='heading_underscore popup_underscore'></span>
+            {% if product.variable_pricing  and show_variable_pricing == 'true' %}
+                <p class="popup_price">{{ product.min_price | money_with_sign }} - {{ product.max_price | money_with_sign }}</p>
+            {% else %}
+              <p class="popup_price">{{ product.default_price | money_with_sign }} </p>
+            {% endif %}        
+            {% case product.status %}
+            {% when 'active' %}
+                {% if product.on_sale and product_description_on_rollover == 'false' %}
+                    <strong><em>On Sale</em></strong>         
+                {% endif %}
+            {% when 'sold-out' %}
+                    <strong><em>Sold Out</em></strong>
+            {% when 'coming-soon' %}
+                    <strong><em>Coming Soon</em></strong>
+            {% endcase %}          
+            </div>
+          </div> <!-- end popup text -->
+        {% endif %}         
+            <img class="product_img" alt="Image of {{ product.name | escape }}" id="{{ product.image | product_image_url | constrain: '500' }}" src="">
+    </div>
+      {% if product_description_on_rollover == 'false' %}    
+        <div class="product_info row">
+          <p class="product_name">{{ product.name }}</p>
+          {% if product.variable_pricing  and show_variable_pricing == 'true' %}
+              <p class="product_price">{{ product.min_price | money_with_sign }} - {{ product.max_price | money_with_sign }}</p>
+          {% else %}
+            <p class="product_price">{{ product.default_price | money_with_sign }} </p>
+          {% endif %}        
+          {% if show_sale_tag == 'false' %}    
+            {% case product.status %}
+            {% when 'active' %}
+                {% if product.on_sale and show_sale_tag == 'false' %}
+                    <strong class="column-xs-12 column-sm-12 column-md-12 column-lg-12"><em>On Sale</em></strong>                    {% endif %}
+            {% when 'sold-out' %}
+                    <strong class="column-xs-12 column-sm-12 column-md-12 column-lg-12"><em>Sold Out</em></strong>
+            {% when 'coming-soon' %}
+                    <strong class="column-xs-12 column-sm-12 column-md-12 column-lg-12"><em>Coming Soon</em></strong>
+            {% endcase %}
+          {% endif %}
+        </div>
+      {% endif %}    
+    </a>
+</div>
+  {% endfor %}
+{% else %}
+<p>No products found.</p>
+{% endif %}
+<script>
+$(document).ready(function() {    
+    $('.product_container').setupProductsGrid({
+          imageHeight: {{product_images_height}},
+          imageWidth: {{product_images_width}},
+          enablePopupInfo: {%if product_description_on_rollover == 'true' %}true{%else%}false{%endif%},
+          fitImagestoContainers: {{fit_images_to_containers}}
+    });
+    {% if product_description_on_rollover == 'false' %}    
+    $('.image_container_large').hover(function(){
+        $(this).addClass('imageFade');
+        console.log('adding fade');
+    }, function(){
+        $(this).removeClass('imageFade');
+    }
+    );    
+    {%endif%}
+});
+</script>

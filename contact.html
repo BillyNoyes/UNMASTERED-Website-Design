@@ -1,0 +1,59 @@
+{% assign contact_email_address = 'info@unmastered.co.uk' %}
+<section id="contact_page contain">
+
+    
+  {% if contact.sent %}
+  <p id="thank_you">Your message has been sent and we will try to respond within 24 business hours.</p>      
+  {% else %}      
+
+    <div class="contain">
+
+       <!-- <div class='contact_info'>
+            <div class='email_addy'>
+                <p>Email: <a href="mailto:contact@gregscharf.com">contact@gregscharf.com</a></p>
+                {% if theme.twitter_username != blank %}
+                    <p>Twitter: <a href="http://twitter.com/{{ theme.twitter_username }}" title="Follow us on Twitter" target="_blank">{{ theme.twitter_username }}</a></p>
+                {% endif %}
+                {% if theme.facebook_username != blank %}
+                    <p>Facebook: <a href="http://facebook.com/{{ theme.facebook_username }}" title="Friend us on Facebook"  target="_blank">{{ theme.facebook_username }}</a></p>
+                {% endif %}
+            </div>
+        </div>-->
+      
+      <p align="center" style="margin-top:2%; margin-bottom:2%; font-size:15px;">If you need any extra information or help, either use the contact form below or send us an email over at <a href="mailto:info@unmastered.co.uk"><strong>info@unmastered.co.uk</strong></a></p>
+      
+        <div class='contact'>
+        <form id="contact_form" method="post" action="/contact">
+          <ul>
+            <li>
+              <label>NAME</label>
+              <!-- <input type="text" value="" tabindex="1" name="name" id="name" placeholder='your name'>-->
+              {{ contact | contact_input: 'name' }}
+            </li>
+            <li>
+              <label>EMAIL</label>
+              {{ contact | contact_input: 'email' }} 
+             <!-- <input type="text" value="" tabindex="1" name="email" id="email" placeholder='your email'> -->
+            </li>
+            <li class="subject">
+              <label>SUBJECT</label>
+              {{ contact | contact_input: 'subject' }}
+            </li>
+            <li>
+             <label>Message</label>
+              {{ contact | contact_input: 'message' }}
+              <!-- <textarea tabindex="3" name="message" id="message" placeholder="Your message"></textarea>-->
+            </li>
+            <li id="captcha_img">
+              <label></label>
+              <div id="captcha_phrase">{{ contact.captcha }}</div>                
+              {{ contact | contact_input: 'captcha' }}       
+            </li>
+          </ul>
+          <input class='fawn_button' id='contact_button_stripe' type="submit" name="contact" title="Send us an email" value='Send' />
+        </form>
+        </div>
+    </div> <!-- end row -->
+  
+  {% endif %}
+</section>

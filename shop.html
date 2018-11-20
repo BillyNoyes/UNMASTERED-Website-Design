@@ -1,0 +1,232 @@
+{% assign slide_link_1 = "" %}
+{% assign slide_link_2 = "" %}
+{% assign slide_link_3 = "" %}
+{% assign slide_link_4 = "" %}
+{% assign slide_link_5 = "" %}
+{% assign slide_link_6 = "" %}
+{% assign slide_link_7 = "" %}
+{% assign slide_link_8 = "" %}
+{% assign slide_link_9 = "" %}
+{% assign slide_link_10 = "" %}
+{% assign slide_link_11 = "" %}
+{% assign slide_link_12 = "" %}
+{% assign slide_link_13 = "" %}
+{% assign slide_link_14 = "" %}
+{% assign use_admin_images = "true" %}
+{% assign show_sale_tag = 'true' %}
+{% assign product_description_on_rollover = 'true' %} 
+{% assign products_per_row = '3' %}
+{% assign slider_height = '' %} 
+{% assign slider_width = '' %} 
+{% assign product_images_width = 596 %}
+{% assign product_images_height = 893 %}
+{% assign fit_images_to_containers = 'true' %}
+{% assign home_page_header = '' %}
+{% assign home_page_secondary_header = '' %}
+{% assign display_secondary_header_before = 10 %}
+{% assign home_page_tertiary_header = '' %}
+{% assign display_tertiary_header_before = 13 %}
+{% assign show_products = 'false' %}
+{% if theme.image_sets.slideshow.size > 0 and use_admin_images == "true" %}
+    <div class="rown wrap">
+        <div class="slider-wrapper">
+        <div class="flexslider" style="{% if slider_height != blank %}max-height:{{slider_height}}px; {%endif%}{% if slider_width != blank %}max-width:{{slider_width}}px; margin:0 auto 50px;{%endif%}">
+            <ul class="slides">
+                {% for image in theme.image_sets.slideshow %}
+                    {% if forloop.index == 1 %}       
+                      {% if slide_link_1 != blank%}<li><a href="{{slide_link_1}}"><img src="{{ image.url }}"></a></li>
+                      {%else%}<li><img src="{{ image.url }}"></li>
+                      {%endif%}
+                    {% elsif forloop.index == 2 %}
+                      {% if slide_link_2 != blank%}<li><a href="{{slide_link_2}}"><img src="{{ image.url }}"></a></li>
+                      {%else%}<li><img src="{{ image.url }}"></li>
+                      {%endif%}
+                    {% elsif forloop.index == 3 %}
+                      {% if slide_link_3 != blank%}<li><a href="{{slide_link_3}}"><img src="{{ image.url }}"></a></li>
+                      {%else%}<li><img src="{{ image.url }}"></li>
+                      {%endif%}
+                    {% elsif forloop.index == 4 %}
+                      {% if slide_link_4 != blank%}<li><a href="{{slide_link_4}}"><img src="{{ image.url }}"></a></li>
+                      {%else%}<li><img src="{{ image.url }}"></li>
+                      {%endif%}
+                    {% elsif forloop.index == 5 %}
+                      {% if slide_link_5 != blank%}<li><a href="{{slide_link_5}}"><img src="{{ image.url }}"></a></li>
+                      {%else%}<li><img src="{{ image.url }}"></li>
+                      {%endif%}
+                    {% elsif forloop.index == 6 %}
+                      {% if slide_link_6 != blank%}<li><a href="{{slide_link_6}}"><img src="{{ image.url }}"></a></li>
+                      {%else%}<li><img src="{{ image.url }}"></li>
+                      {%endif%}
+                    {% elsif forloop.index == 7 %}
+                      {% if slide_link_7 != blank%}<li><a href="{{slide_link_7}}"><img src="{{ image.url }}"></a></li>
+                      {%else%}<li><img src="{{ image.url }}"></li>
+                      {%endif%}
+                    {% elsif forloop.index == 8 %}
+                      {% if slide_link_8 != blank%}<li><a href="{{slide_link_8}}"><img src="{{ image.url }}"></a></li>
+                      {%else%}<li><img src="{{ image.url }}"></li>
+                      {%endif%}
+                    {% elsif forloop.index == 9 %}
+                      {% if slide_link_9 != blank%}<li><a href="{{slide_link_9}}"><img src="{{ image.url }}"></a></li>
+                      {%else%}<li><img src="{{ image.url }}"></li>
+                      {%endif%}
+                    {% elsif forloop.index == 10 %}
+                      {% if slide_link_10 != blank%}<li><a href="{{slide_link_10}}"><img src="{{ image.url }}"></a></li>
+                      {%else%}<li><img src="{{ image.url }}"></li>
+                      {%endif%}
+                    {% elsif forloop.index == 11 %}
+                      {% if slide_link_11 != blank%}<li><a href="{{slide_link_11}}"><img src="{{ image.url }}"></a></li>
+                      {%else%}<li><img src="{{ image.url }}"></li>
+                      {%endif%}
+                    {% elsif forloop.index == 12 %}
+                      {% if slide_link_12 != blank%}<li><a href="{{slide_link_12}}"><img src="{{ image.url }}"></a></li>
+                      {%else%}<li><img src="{{ image.url }}"></li>
+                      {%endif%}
+                    {% elsif forloop.index == 13 %}
+                      {% if slide_link_13 != blank%}<li><a href="{{slide_link_13}}"><img src="{{ image.url }}"></a></li>
+                      {%else%}<li><img src="{{ image.url }}"></li>
+                      {%endif%}
+                    {% elsif forloop.index == 14 %}
+                      {% if slide_link_14 != blank%}<li><a href="{{slide_link_14}}"><img src="{{ image.url }}"></a></li>
+                      {%else%}<li><img src="{{ image.url }}"></li>
+                      {%endif%}
+                    {%endif%}
+              {% endfor %}
+            </ul>
+        </div>
+        </div>
+    </div>
+{% endif %}   
+{% if show_products == 'true' %}
+{% get products from products.all limit:theme.featured_products order:theme.featured_order %}
+{% if products != blank %}
+  {% for product in products %}
+  {% if home_page_header != blank and forloop.index == 1%}
+    <div class='special_header featured'>
+        <div class='border_intersect'><div class='the_border'></div><h3><span>{{home_page_header}}</span></h3></div>
+    </div>
+  {% endif %}
+  {% if home_page_secondary_header != blank and forloop.index == {{display_secondary_header_before}}%}
+    <div class='special_header featured'>
+        <div class='border_intersect'><div class='the_border'></div><h3><span>{{home_page_secondary_header}}</span></h3></div>
+    </div>
+  {% endif %}
+   {% if home_page_tertiary_header != blank and forloop.index == {{display_tertiary_header_before}}%}
+    <div class='special_header featured'>
+        <div class='border_intersect'><div class='the_border'></div><h3><span>{{home_page_tertiary_header}}</span></h3></div>
+    </div>
+  {% endif %}  
+  {% if products_per_row == '3' %}
+    <div class="product_container column-xs-1 column-sm-1-2 column-md-1-3 column-lg-1-3">
+  {% else %}
+    <div class="product_container column-xs-1 column-sm-1-2 column-md-1-4 column-lg-1-4">
+  {% endif %}
+    <a href="{{ product.url }}" class="{{product.permalink}}">
+    <div class="image_container_large loading">
+      {% if show_sale_tag == 'true' %}    
+        {% case product.status %}
+        {% when 'active' %}
+            {% if product.on_sale %}
+                <p class='sale_tag'>On Sale</p>
+            {% endif %}
+        {% when 'sold-out' %}
+                <p class='sale_tag'>Sold Out</p>
+        {% when 'coming-soon' %}
+                <p class='sale_tag'>Coming Soon</p>
+        {% endcase %}          
+      {%endif%} 
+      {% if product_description_on_rollover == 'true' %}    
+      <div class="product_popup_info">
+        <div class="popup_text">
+          <p class="popup_product_name">{{ product.name }}</p>
+          <span class='heading_underscore popup_underscore'></span>
+            {% if product.variable_pricing  and show_variable_pricing == 'true' %}
+                <p class="popup_price">{{ product.min_price | money_with_sign }} - {{ product.max_price | money_with_sign }}</p>
+            {% else %}
+              <p class="popup_price">{{ product.default_price | money_with_sign }} </p>
+            {% endif %}        
+            {% case product.status %}
+            {% when 'active' %}
+                {% if product.on_sale %}
+                    <strong><em>On Sale</em></strong>         
+                {% endif %}
+            {% when 'sold-out' %}
+                    <strong><em>Sold Out</em></strong>
+            {% when 'coming-soon' %}
+                    <strong><em>Coming Soon</em></strong>
+            {% endcase %}          
+            </div>
+          </div> <!-- end popup text -->
+        {% endif %}             
+        <img class="product_img" alt="Image of {{ product.name | escape }}" id="{{ product.image | product_image_url size:"huge" }}" src="">
+   </div>
+      {% if product_description_on_rollover == 'false' %}        
+        <div class="product_info row">
+          <p class="product_name">{{ product.name }}</p>
+          {% if product.variable_pricing and show_variable_pricing == 'true' %}
+              <p class="product_price">{{ product.min_price | money_with_sign }} - {{ product.max_price | money_with_sign }}</p>
+          {% else %}
+            <p class="product_price">{{ product.default_price | money_with_sign }} </p>
+          {% endif %}        
+          {% if show_sale_tag == 'false' %}    
+            {% case product.status %}
+            {% when 'active' %}
+                {% if product.on_sale and show_sale_tag == 'false' %}
+                    <strong ><em>On Sale</em></strong>         
+                {% endif %}
+            {% when 'sold-out' %}
+                    <strong ><em>Sold Out</em></strong>
+            {% when 'coming-soon' %}
+                    <strong><em>Coming Soon</em></strong>
+            {% endcase %}
+          {% endif %}
+        </div>
+      {% endif %}        
+    </a>
+</div>
+  {% endfor %}
+{% if paginate.previous.is_link or paginate.next.is_link %}
+{{ paginate | default_pagination }}
+{% endif %}
+{% else %}
+  <div class="container">
+    <p>No products found.</p>
+  </div><!-- end container-->
+{% endif %}
+{% endget %}
+{% endif %}
+<script>
+$(document).ready(function() {
+    $('.product_container').setupProductsGrid({
+          imageHeight: {{product_images_height}},
+          imageWidth: {{product_images_width}},
+          enablePopupInfo: {%if product_description_on_rollover == 'true' %}true{%else%}false{%endif%},
+          fitImagestoContainers: {{fit_images_to_containers}}
+    });
+});
+jQuery(document).ready(function() {
+    jQuery(".flexslider")
+    .flexslider({
+        animation: "fade",
+        animationLoop: true,
+        smoothHeight: true,
+        useCSS: false,
+        prevText: '',
+        nextText: '',
+        before: function(slider){
+            if (slider.slides.eq(slider.currentSlide).find('iframe').length !== 0)
+                  $f( slider.slides.eq(slider.currentSlide).find('iframe').attr('id') ).api('pause');
+        }
+    });
+    {% if product_description_on_rollover == 'false' %}    
+        $('.image_container_large').hover(function(){
+            $(this).addClass('imageFade');
+            console.log('adding fade');
+        }, function(){
+            $(this).removeClass('imageFade');
+        }
+        );    
+    {%endif%}
+    $('p:empty').remove();
+    $('br').remove();
+});
+</script>

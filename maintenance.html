@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>{{ page.name }} / {{ store.name }}</title>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1, width=device-width">  
+    <meta name="description" content="{{ page.meta_description }}">
+    <meta name="keywords" content="{{ page.meta_keywords }}">
+  
+    <link rel="stylesheet" href="{{ theme | theme_css_url }}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
+  
+    <!-- IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  
+    {{ head_content }}
+    
+     <!--
+      
+     _  _  _   _ __  __  _   ___ _____ ___ ___ ___ ___  
+    | | | | \| |  \/  | /_\ / __|_   _| __| _ \ __|   \ 
+    | |_| |    | |\/| |/ _ \\__ \ | | | _||   / _|| |) |
+     \___/|_|\_|_|  |_/_/ \_\___/ |_| |___|_|_\___|___/ 
+      
+      DESIGN BY BILLY NOYES
+      
+      -->
+    
+  </head>
+<style>
+  .body {position: relative;}
+  
+  body {background-color: #000;}
+  
+  
+  /* Makes a fixed background wrapper
+  which the user cannot interact with */
+  
+  .iframe-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  }
+  
+  /* Make the iframe keep an aspect ratio, and
+  position it in the middle of its parent wrapper*/
+  
+  .iframe-wrapper iframe {
+  width: 100vw;
+  height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+  min-height: 100vh;
+  min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  }
+  
+  .message {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 400px;
+  text-align: center;
+  top: 0;
+  bottom: 0;
+  border: 5px solid;
+  max-height: 245px;
+  padding: 30px;
+  color: #fff;
+  }
+  
+  h1 {
+  color: #fff; 
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;}
+  
+  img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  width: 50%;
+  padding-top: 10%;
+  padding-bottom: 0;
+  }
+  
+  @media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .iframe-wrapper {
+        display:none;
+    }
+  
+  }
+  
+  </style>
+  <body id="{{ page.permalink }}_page" class="standalone">
+    
+    <div class="iframe-wrapper">
+      <iframe src="https://player.vimeo.com/video/189401473?autoplay=1&loop=1&color=fffff&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </div>
+    
+    <div class='logo_container'>    
+      <img class='logo' src="http://i.imgsafe.org/09fc8e25a7.png" />
+    </div>
+    
+    
+    <div class="canvas message">      
+      <h1>CURRENTLY CLOSED</h1>
+      
+     
+      <!-- Begin MailChimp Signup Form -->
+      <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+      <style type="text/css">
+	#mc_embed_signup{background: transparent; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%; color: #fff}
+        input.button {color: #fff}
+        div.mc-field-group input {width: 100%;}
+  
+      </style>
+      <div id="mc_embed_signup">
+        <form action="https://billy-noyes.us12.list-manage.com/subscribe/post" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+          <div id="mc_embed_signup_scroll">
+            
+            <input type="hidden" name="u" value="c9fb9fbba2fc3e9f1de9aa6b0">
+            <input type="hidden" name="id" value="f19420b8d2">
+            
+            <input type="email" value="" name="EMAIL" class="email" id="*|MERGE0|*" placeholder="EMAIL ADDRESS" required>
+            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_c9fb9fbba2fc3e9f1de9aa6b0_f19420b8d2" tabindex="-1" value=""></div>
+            <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              
+          </div>
+        </form>
+      </div>
+      
+      <!--End mc_embed_signup-->
+      
+    </div>
+    
+  </body>
+</html>

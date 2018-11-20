@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<!-- --------- User Customization Variables ------------ -->
+
+
+
+{% assign show_social_icons = 'true' %} <!--set to 'true' show social media links -->
+{% assign social_icons_mobile_text = 'Join Us On' %} <!-- Heading above social icons on mobile.-->
+
+<!-- Setting the following to 'true' will show your social media links as text.  
+Setting to 'false' will display your links as icons. -->
+{% assign display_social_links_as_text = 'false'%}
+
+<!--
+                              *** social networking icons *** 
+1) Add a url link (e.g. 'http://tumblr.com/username') between the single quotes
+   to turn on.  leave the single quotes empty (e.g. '') to turn off.
+2) set show_social_icons to 'false' to hide all social media icons
+    to un-hide set this value to true.  The url between the quotes for facebook,
+    instagram and pinterest are for demo purposes and should be removed if 
+    you aren't going to be using those icons, for example googleplus_link = '' 
+-->
+<!--url path to icon images-->
+{% assign googleplus_link = '' %}
+{% assign facebook_link = 'https://www.facebook.com/Unmasteredbrand' %}
+{% assign tumblr_link = '' %}
+{% assign pinterest_link = '' %}
+{% assign youtube_link = '' %}
+{% assign instagram_link = 'http://www.instagram.com/unmasteredbrand' %}
+{% assign twitter_link = 'http://www.twitter.com/billynoyes' %}
+{% assign linkedin_link = '' %}
+{% assign soundcloud_link = '' %}
+{% assign vine_link = '' %}
+{% assign wordpress_link = '' %}
+{% assign rss_link = '' %}
+{% assign github_link = '' %}
+
+
+
+  {% assign fav_icon = 'http://www.iconj.com/ico/9/7/97y9wi1ys4.ico' %} <!--externally host link to your fav icon image (in .ico format) --> 
+  {% assign apple_device_icon_url = 'http://www.iconj.com/ico/9/7/97y9wi1ys4.ico' %}
+<!--
+to enable the Mail Chimp mailing list functionality enter the link that should 
+be found in the code that they give you after you create your list.  The link
+you need can usually be found in form action="".  (For more detailed instructions
+on where to find this code refer to the "Instructions" text file.)
+<form action="http://example_of_link" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+Just copy everything between those quotes and paste it between the mailing_list_link quotes below.
+-->
+{% assign mailing_list_link = 'http://billy-noyes.us12.list-manage.com/subscribe/post?u=c9fb9fbba2fc3e9f1de9aa6b0&amp;id=f19420b8d2' %} 
+{% assign mailing_list_heading_text = 'NEWSLETTER' %} 
+{% assign mailing_list_button_text = 'JOIN' %} 
+{% assign mailing_list_input_box_text = 'ENTER YOUR EMAIL' %} 
+
+<!--
+    Set to 'true' to show the page headings at the top of custom pages.
+-->
+{% assign show_custom_page_titles = 'false' %}
+
+<!--Settings for "home" link on main menu-->
+{% assign show_home_link = 'true' %}
+{% assign home_link_name = 'HOME' %}
+
+<!-- 
+   Set use_shop_pulldown to 'true' to display all of your product categories under a "Shop" pulldown
+   Set pages_on_main_menu_in_pulldown to 'true' to add the pages you have made to the main menu.
+   The pages will appear to the right of your product categories.  
+   Set pages_on_main_menu_in_pulldown to 'false' leaves your pages off the main products menu.
+-->
+{% assign use_shop_pulldown = 'true' %}
+{% assign shop_pulldown_name = 'Store' %}
+
+{% assign pages_menu_title = 'Work' %}
+{% assign show_contact_on_main_menu = 'true' %}
+
+{% assign hide_footer = 'false' %}  
+
+
+<!--If you've set use_single_line_footer to false in CSS, then the headings and second links column 
+will apply -->
+{% assign page_subnav1_name = 'GALLERY' %}
+{% assign page_subnav1_link = '/LOOKBOOK' %} <!--to not link add '#' -->
+  
+{% assign page_subnav2_name = 'VIDEO' %}
+{% assign page_subnav2_link = '/video' %} <!--to not link add '#' -->
+  
+{% assign page_subnav3_name = 'PRESS' %}
+{% assign page_subnav3_link = '/press' %} <!--to not link add '#' -->
+<!--If you've set use_single_line_footer to false in CSS, then the headings and second links column 
+will apply -->
+{% assign footer_heading_1 = '' %}
+{% assign show_second_links_column = 'true' %}
+{% assign footer_heading_2 = '' %}
+{% assign contact_link_in_column = 2 %} <!-- the footer column in which to put the contact link -->
+
+<!-- 
+   Set hide_designed_by to 'true' to remove "Theme by" and my home page link from the footer.
+-->
+{% assign hide_designed_by = 'true' %} 
+
+<!-- local_server is a development variable that should be set to 'false' on all live sites -->
+{% assign local_server = 'false' %}
+
+<!-- ------------ end user customization ------------ -->
+
+    <head>
+    <title>UNMASTERED</title>
+
+    <meta charset="UTF-8">
+    <meta name='viewport' content='initial-scale=1.0, maximum-scale=1, width=device-width'/>
+    <!--[if IE ]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->  
+
+    <meta name="author" content="{{ store.name }}">
+    <meta name="keywords" content="{{ page.meta_keywords }}">
+
+    {% if product != blank and page.full_url contains '/product/' %}
+    <meta property="og:title" content="{{ product.name | escape }}">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="{{store.url}}{{page.full_path}}">
+    <meta property="og:image" content="{{ product.image.url }}">
+    <meta property="og:site_name" content="{{ store.name | escape }}">
+    <meta name="og:description" content="{{ product.description | escape}}">
+    <meta property="og:price:currency" content="GBP" />
+    <meta property="og:price:amount" content="{{product.default_price}}" />
+    {% else %}
+    <meta name="description" content="{{ page.meta_description | escape}}">
+    {% endif %} 
+
+    <link rel="canonical" href="{{store.url}}{{page.full_path}}">
+    {% if fav_icon != blank %}
+        <link rel="shortcut icon" href="{{fav_icon}}" >
+    {% endif %} 
+  
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fancybox/1.3.4/jquery.fancybox-1.3.4.css">
+
+    <!--<link href="http://googledrive.com/host/0B51UCH0yGk6FdU9Kcjh2U1BxVDQ/flexslider.css" media="screen" rel="stylesheet" type="text/css">-->
+      
+    <link href="https://cdn.jsdelivr.net/flexslider/2.2/flexslider.css" media="screen" rel="stylesheet" type="text/css">   
+      
+    
+       
+    <link href="{{ theme | theme_css_url }}" media="screen" rel="stylesheet" type="text/css">
+     
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.js"></script>    
+         
+    <script src="{{ 'api' | theme_js_url }}" type="text/javascript"></script>
+
+    {% if local_server == 'true' %}
+        <script src="{{ theme | theme_js_url }}" type="text/javascript"></script>
+    {%else%}
+  <script src='https://s3-us-west-2.amazonaws.com/gswdthemes/bc_frosty/theme1.2.js'></script> 
+    {% endif %}   
+    
+    {{ head_content }}
+      
+      
+      <!--
+      
+     _  _  _  _ __  __   _   ___ _____ ___ ___ ___ ___  
+    | | | | \| |  \/  | /_\ / __|_   _| __| _ \ __|   \ 
+    | |_| |    | |\/| |/ _ \\__ \ | | | _||   / _|| |) |
+     \___/|_|\_|_|  |_/_/ \_\___/ |_| |___|_|_\___|___/ 
+      
+      DESIGN BY BILLY NOYES
+      
+      -->
+      
+      <style>
+        nav li.selected > a {
+        color: #666; 
+        }
+        
+        nav ul ul {
+        border: 1px solid #000;
+        }
+      </style>
+      
+  </head>
+  
+  <body id="{{ page.permalink }}" class="{{ page.category }}">
+    
+  <div class="holder">
+<!--[if lt IE 9]>
+    <div style="font: 1.1em; background: red; color: black; position: absolute; top: 0; bottom: 0; left: 0; right: 0; border: 2px solid #000; margin: auto; height: 350px; width: 300px; padding: 10px; z-index:99999;">
+    <h2 style="border-bottom: 2px solid #000; text-align: center; color: #000; font-size: 1.3em;">Your browser is out of date</h2>
+    <p>Please upgrade to the latest version of Internet Explorer.</p>
+    <p>Or, if you're running Windows XP or older, install one of these free alternatives to Internet Explorer:</p>
+    <a href="http://www.mozilla.org/en-US/firefox/new/" target="_blank" style="color: orange;">Firefox</a><br>
+    <a href="https://www.google.com/intl/en/chrome/browser/" target="_blank" style="color: blue;">Google Chrome</a>
+    <p>Upgrading will not only ensure compatibility on this website but on many other modern websites as well.</p>
+  </div>
+<![endif]-->
+    {% if page.permalink != 'home' %}             
+    <div class='contain'>
+        
+        
+        <nav class="mobile_menu">
+            <span class='mobile_data'></span>
+            
+            <ul class='ddm'>
+                <li class='nav_button'><a href="#"><div class='navigation_icon'><i class="fa fa-navicon"></i></div> </a>
+                <ul>
+
+                </ul>
+            </li>
+            </ul>
+        </nav>  
+        
+        <div class="main_cart">
+           <!--<a class="checkout_link checkout_text" href="/checkout">Checkout</a>-->
+           <a href="/cart" alt="Cart">  
+           <div class='cart_icon'>
+               <i class="fa fa-shopping-cart"></i>
+           </div>
+           </a>
+           <div class='cart_info'>
+               <a href="/cart" alt="Cart">
+                   <p  class='cart_item_count'>Your Cart</p>
+                   <p class='cart_count_text'>{{ cart.item_count  | pluralize: 'item', 'items' }}</p>
+               </a>
+            
+               <a href="/cart" alt="Cart">
+                   <p class='cart_money_total xprice no_symbol'>{{ cart.total | money_with_sign }}</p> 
+               </a>
+             <!--<select class="currency_converter"></select>-->
+           </div>           
+        </div>
+        
+
+        <div class="main_banner wrap">
+            {% if theme.images.header.url != blank %}
+                <a href="/"><img id="banner" src="{{ theme.images.header.url }}"></a> 
+            {% elsif local_server == 'true' %}
+                <a href="/home"><img id="banner" src="/images/logo1.png"></a> 
+             {%else%}   
+                <h1 class="store_name"><a href="/">{{ store.name }}</a></h1>
+            {% endif %}        
+        </div>
+        
+        {% if theme.show_search %}
+        <div class="search wrap"> 
+              <form id="search-form" name="search" action="/products" method="get">
+                <input id="search-input" name="search" type="text" />
+                <div class="search_button">
+                    <input name="go" value='&#xf002' type="submit" />
+                </div>
+              </form>
+        </div>
+        {% endif %}
+
+        <nav class='wrap'>
+            <div class="menu">
+                <ul class="ddm">
+
+                    <span class='main_menu'>   
+                     {%if show_home_link == 'true' %}
+                        <li {% if page.name == "Home" %}class="selected"{% endif %}><a href="/">{{home_link_name}}</a></li>
+                     {%endif%}
+                     
+                     {% if use_shop_pulldown == 'true' %}   
+                     <li {% if page.full_url contains '/products' or page.full_url contains '/product/' or page.full_url contains '/category/' %}class="selected"{% endif %}><a href="/products">{{shop_pulldown_name}}</a>
+                       <ul>
+                     {% endif %}
+                     
+                            {% for page in pages.all %}
+                               {% if page.name contains '-subnav-' %}
+                                 <li {% if page.full_url contains page.url %}class="selected"{% endif %}><a href="{{ page.url }}">{{ page.name | remove: '-mainmenu-' | remove: '-subnav-' | remove: '-subnav1-' | remove: '-subnav2-' | remove: '-subnav3-' | remove: '-footer-' | remove: '-f1-' | remove: '-f2-' | remove: '-f3-' }}</a></li>
+                               {% endif %}
+                           {% endfor %}                      
+                     
+                     
+                            {% for category in categories.active %}
+                                {% if category.name == "Custom Work" or  category.name == "Photography" %}
+                                {% else %}
+                                    <li class='category {% if page.full_url contains category.url %}selected{% endif %}'>{{ category | link_to }}</li>
+                                {% endif %}
+                            {% endfor %}
+                     {% if use_shop_pulldown == 'true' %}   
+                       </ul>
+                     </li>    
+                     {% endif %}
+
+                    {% if artists.active != blank %}
+                     <li><a href="/products">Brands</a>
+                       <ul>
+                         {% for artist in artists.active %}
+                         <li>{{ artist | link_to }}</li>
+                         {% endfor %}
+                       </ul>
+                     </li>    
+                     {% endif %}          
+
+                {% if page_subnav1_name != blank %}
+                <li><a href="{{page_subnav1_link}}">{{page_subnav1_name}}</a>
+                    <ul>
+                        {% for page in pages.all %}
+                            {% if page.name contains '-subnav1-' %}
+                              <li {% if page.full_url contains page.url %}class="selected"{% endif %}><a href="{{ page.url }}">{{ page.name | remove: '-subnav1-' | remove: '-subnav2-' | remove: '-subnav3-' | remove: '-mainmenu-' | remove: '-footer-' | remove: '-f1-' | remove: '-f2-' | remove: '-f3-' }}</a></li>
+                            {% endif %}
+
+                        {% endfor %}                  
+                    </ul>
+                <li>
+                {%endif%}  
+
+                {% if page_subnav2_name != blank %}
+                <li><a href="{{page_subnav2_link}}">{{page_subnav2_name}}</a>
+                    <ul>
+                        {% for page in pages.all %}
+                            {% if page.name contains '-subnav2-' %}
+                              <li {% if page.full_url contains page.url %}class="selected"{% endif %}><a href="{{ page.url }}">{{ page.name | remove: '-subnav1-' | remove: '-subnav2-' | remove: '-subnav3-' | remove: '-mainmenu-' | remove: '-footer-' | remove: '-f1-' | remove: '-f2-' | remove: '-f3-' }}</a></li>
+                            {% endif %}
+
+                        {% endfor %}                  
+                    </ul>
+                <li>
+                {%endif%}         
+
+                {% if page_subnav3_name != blank %}
+                <li><a href="{{page_subnav3_link}}">{{page_subnav3_name}}</a>
+                    <ul>
+                        {% for page in pages.all %}
+                            {% if page.name contains '-subnav3-' %}
+                              <li {% if page.full_url contains page.url %}class="selected"{% endif %}><a href="{{ page.url }}">{{ page.name | remove: '-subnav1-' | remove: '-subnav2-' | remove: '-subnav3-' | remove: '-mainmenu-' | remove: '-footer-' | remove: '-f1-' | remove: '-f2-' | remove: '-f3-' }}</a></li>
+                            {% endif %}
+
+                        {% endfor %}                  
+                    </ul>
+                <li>
+                {%endif%}   
+
+                {% for page in pages.all %}
+                    {% if page.name contains '-mainmenu-' %}
+                      <li {% if page.full_url contains page.url %}class="selected"{% endif %}><a href="{{ page.url }}">{{ page.name | remove: '-mainmenu-' | remove: '-subnav1-' | remove: '-subnav2-' | remove: '-subnav3-' | remove: '-footer-' | remove: '-f1-' | remove: '-f2-' | remove: '-f3-' }}</a></li>
+                    {% endif %}
+                {% endfor %}                        
+                     
+                    {% if show_contact_on_main_menu == 'true' %}
+                        <li {% if page.full_url contains 'contact' %}class="selected"{% endif %}><a href="/contact">Contact</a></li>
+                    {% endif %}   
+ 
+                    <li class="main_cart">
+                       <!--<a class="checkout_link checkout_text" href="/checkout">Checkout</a>-->
+                       <div class='cart_info'>
+                           <a href="/cart" alt="Cart">
+                               <p  class='cart_item_count'>Your Cart</p>
+                               <p class='cart_count_text'>{{ cart.item_count  | pluralize: 'item', 'items' }}</p>
+                               <p class='cart_money_total xprice no_symbol'>{{ cart.total | money_with_sign }}</p>
+                           </a>
+                           <!-- select class="currency_converter"></select>-->  
+                       </div>
+                    </li>                    
+                    
+                    
+                    </span>     
+                </ul>
+            </div> <!-- end menu -->
+        </nav>
+    </div><!--end contain -->
+    
+{%endif%}
+
+        <div class='contain'>
+            <section class="content">
+
+              {% if errors != blank %}
+              <ul class="unstyled errors">
+                {% for error in errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+
+              {% if page.category == 'custom' %}
+              {% if show_custom_page_titles == 'true' %}
+                <h1>{{ page.name | remove: '-content_block-' | remove: '-hpcb_1-' | remove: '-hpcb_2-' | remove: '-hpcb_3-' | remove: '-hpcb_4-' | remove: '-footer-' | remove: '-hide-' | remove: '-sidebar-' | remove: '-subnav-' | remove: '-subnav1-' | remove: '-subnav2-' | remove: '-subnav3-' | remove: '-mainmenu-' | remove: '-f1-' | remove: '-f2-' | remove: '-f3-' }}
+                </h1>
+              {% else %}
+              <br>
+              {% endif %}
+                {{ page_content | paragraphs }}
+              {% else %}
+                {{ page_content }}
+              {% endif %}
+            </section>
+
+        </div> <!-- end contain-->
+    {% if page.permalink != 'home' %}           
+        {% if hide_footer != 'true' %}
+        <footer class="wrap">
+            <div class='contain'>
+            <div class='other_links'>
+                <div class='pages_nav'>
+                    <ul>
+                        
+                        <span class='page_links'>
+                        <h3 class="other_links_header">{{footer_heading_1}}</h3>
+                            {% for page in pages.all %}
+                                {% if page.name contains '-footer-' %}
+                                {% unless page.name contains '-f2-' %}
+                                    <li><a href="{{ page.url }}">{{ page.name | remove: '-subnav1-' | remove: '-subnav2-' | remove: '-subnav3-' | remove: '-mainmenu-' | remove: '-footer-' | remove: '-f1-' | remove: '-f2-' | remove: '-f3-' }}</a></li>
+                                {% endunless %}
+                                {% endif %}               
+                            {% endfor %}  
+                            
+                            {% if contact_link_in_column == 1 %}
+                                <li><a href="/contact">Contact</a></li>
+                            {%endif%}
+                            
+                        </span>
+
+                        {% if show_second_links_column == 'true' %}
+                        <span class='page_links'>
+                        <h3 class="other_links_header">{{footer_heading_2}}</h3>
+                            {% for page in pages.all %}
+                            {% if page.name contains '-footer-' %}
+                                {% unless page.name contains '-f1-' %}
+                                  <li><a href="{{ page.url }}">{{ page.name | remove: '-subnav1-' | remove: '-subnav2-' | remove: '-subnav3-' | remove: '-mainmenu-' | remove: '-footer-' | remove: '-f1-' | remove: '-f2-' | remove: '-f3-' }}</a></li>
+                                {% endunless %}
+                            {% endif %}               
+                            {% endfor %} 
+                                
+                            {% if contact_link_in_column == 2 %}
+                                <li><a href="/contact">Contact</a></li>
+                            {%endif%}
+                        </span>
+                        {% endif %}
+
+
+                        <div class="social_block {% if mailing_list_link == blank %}no_mailing_list{%endif%}">
+                        {% if mailing_list_link != blank %}
+                        <span class='mailing_list'>   
+                                <h3 class="mailing_list_header">{{mailing_list_heading_text}}</h3>
+                                <div id="mc_embed_signup">
+                                    <form action="{{mailing_list_link}}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                                                <!--<label for="mce-EMAIL">Mailing List</label>-->
+                                        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="{{mailing_list_input_box_text}}" required>
+                                        <input type="submit" value="{{mailing_list_button_text}}" name="subscribe" id="mc-embedded-subscribe" class="fawn_button subscribe_button">
+                                    </form>
+                                </div>
+                         </span>               
+                        {% endif %}
+                        
+                        {% if show_social_icons == 'true' %}
+                        <span class='social_links {% if mailing_list_link == blank %}no_mailing_list {%endif%}'>
+                            <h3 class="social_mobile_header visible-xs visible-sm">{{social_icons_mobile_text}}</h3>
+                            {% if display_social_links_as_text == 'true' %}
+                                <span class='text_links'>
+                                {% if facebook_link != blank %}
+                                    <li><a href='{{ facebook_link }}' target="_blank">Facebook</a></li>
+                                {% endif %}
+                                {% if twitter_link != blank %}
+                                    <li><a href='{{ twitter_link }}' target="_blank">Twitter</a></li>
+                                {% endif %}
+                                {% if pinterest_link != blank %}
+                                    <li><a href='{{ pinterest_link }}' target="_blank">Pinterest</a></li>
+                                {% endif %}
+                                {% if googleplus_link != blank %}
+                                    <li><a href='{{ googleplus_link }}' target="_blank">Google+</a></li>
+                                {% endif %}
+                                {% if instagram_link != blank %}
+                                    <li><a href='{{ instagram_link }}' target="_blank">Instagram</a></li>
+                                {% endif %}
+                                {% if tumblr_link != blank %}
+                                    <li><a href='{{ tumblr_link }}' target="_blank">Tumblr</a></li>
+                                {% endif %}
+                                {% if youtube_link != blank %}
+                                    <li><a href='{{ youtube_link }}' target="_blank">You Tube</a></li>
+                                {% endif %}                                
+                                {% if github_link != blank %}
+                                    <li><a href='{{ github_link }}' target="_blank">Git Hub</a></li>
+                                {% endif %}
+                                </span>
+                            {% else %}       
+
+                                {% if twitter_link != blank %}
+                                    <li><a href='{{ twitter_link }}' class='twitter' title='Twitter' target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                {% endif %}
+                                {% if pinterest_link != blank %}
+                                    <li><a href='{{ pinterest_link }}' class='pinterest' title='Pinterest' target="_blank"><i class="fa fa-pinterest"></i></a></li>
+                                {% endif %}
+                                {% if tumblr_link != blank %}
+                                    <li><a href='{{ tumblr_link }}' class='tumblr' title='Tumblr' target="_blank"><i class="fa fa-tumblr"></i></a></li>
+                                {% endif %}
+                                {% if facebook_link != blank %}
+                                    <li><a href='{{ facebook_link }}' class='facebook' title='Facebook' target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                {% endif %}
+                                {% if googleplus_link != blank %}
+                                    <li><a href='{{ googleplus_link }}' class='googleplus' title='Google+' target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                                {% endif %}
+                                {% if linkedin_link != blank %}
+                                    <li><a href='{{ linkedin_link }}' class='linkedin'  title='Linkedin' target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                {% endif %}
+                                {% if soundcloud_link != blank %}
+                                    <li><a href='{{ soundcloud_link }}' class='soundcloud'  title='Soundcloud' target="_blank"><i class="fa fa-soundcloud"></i></a></li>
+                                {% endif %} 
+                                {% if vine_link != blank %}
+                                    <li><a href='{{ vine_link }}' class='soundcloud'  title='Vine' target="_blank"><i class="fa fa-vine"></i></a></li>
+                                {% endif %}   
+                                {% if wordpress_link != blank %}
+                                    <li><a href='{{ wordpress_link }}' class='wordpress'  title='WordPress' target="_blank"><i class="fa fa-wordpress"></i></a></li>
+                                {% endif %}                                  
+                                {% if instagram_link != blank %}
+                                    <li><a href='{{ instagram_link }}' class='instagram' title='Instagram' target="_blank"><i class="fa fa-instagram"></i></a></li>
+                                {% endif %}
+                                {% if youtube_link != blank %}
+                                    <li><a href='{{ youtube_link }}' class='youtube'  title='YouTube' target="_blank"><i class="fa fa-youtube"></i></a></li>
+                                {% endif %}                                
+                                {% if rss_link != blank %}
+                                    <li><a href='{{ rss_link }}' class='RSS'  title='RSS' target="_blank"><i class="fa fa-rss"></i></a></li>
+                                {% endif %}                                  
+
+                                </span>
+                            {% endif %}                                
+                        </span>
+                        {% endif %}     
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                {% if hide_designed_by == 'true' %}
+                <style>
+                    #copy {margin-right: 0;}
+                </style>
+                {%endif%}
+                <span id="copy">Copyright &copy; {{ 'Today' | date: "%Y" }} {{ store.name }}</span> {% if hide_designed_by == 'false' %}| <span id="custom">Theme by <a href="#" target="_blank">SOURCE STUDIOS</a></span>{% endif %}
+
+            </div>
+            </div> <!-- end contain -->
+        </footer>    
+        {% endif %}
+        
+    {% endif %}  
+    
+    </div>    
+      <script>
+          $(document).ready(function(){
+             $('.select_parent').parent().parent().addClass('selected'); 
+          });
+      </script>
+
+<script>
+(function($) {                
+    $(document).ready(function(){
+    $('.info_button').click(function(){
+        $('#infoModal').reveal({
+            animation: 'none',                         //fade, fadeAndPop, none
+            animationspeed: 300,                       //how fast animtions are
+            closeonbackgroundclick: true,              //if you click background will modal close?
+            dismissmodalclass: 'close-reveal-modal' 
+        });       
+    });
+
+});
+})(jQuery)
+</script>
+                  
+<script type="text/javascript">
+  var _learnq = _learnq || [];
+
+  _learnq.push(['account', 'Bj3DTQ']);
+
+  (function () {
+  var b = document.createElement('script'); b.type = 'text/javascript'; b.async = true;
+  b.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'a.klaviyo.com/media/js/analytics/analytics.js';
+  var a = document.getElementsByTagName('script')[0]; a.parentNode.insertBefore(b, a);
+  })();
+</script>     
+      
+  </body>
+</html>
